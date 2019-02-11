@@ -1,14 +1,3 @@
-# Introduction
-
-This is an unofficial inplementation of [VoxelNet: End-to-End Learning for Point Cloud Based 3D Object Detection](https://arxiv.org/abs/1711.06396) in TensorFlow. A large part of this project is based on the work [here](https://github.com/jeasinema/VoxelNet-tensorflow). Thanks to [@jeasinema](https://github.com/jeasinema). This work is a modified version with bugs fixed and better experimental settings to chase the results reported in the paper (still ongoing).
-
-# Dependencies
-- `python3.5+`
-- `TensorFlow` (tested on 1.4.1)
-- `opencv`
-- `shapely`
-- `numba`
-- `easydict`
 
 # Installation
 1. Clone this repository.
@@ -26,6 +15,10 @@ $ g++ -o evaluate_object_3d_offline evaluate_object_3d_offline.cpp
 $ cd kitti_eval
 $ chmod +x launch_test.sh
 ```
+5. install PPCL
+
+
+
 
 # Data Preparation
 1. Download the 3D KITTI detection dataset from [here](http://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d). Data to download include:
@@ -80,30 +73,3 @@ results will be dumped into `predictions/data`. Set the `--vis` flag to True if 
 ```bash
 $ ./kitti_eval/evaluate_object_3d_offline [DATA_DIR]/validation/label_2 ./predictions
 ```
-
-# Performances
-
-The current implementation and training scheme are able to produce results in the tables below.
-
-##### Bird's eye view detection performance: AP on KITTI validation set
-
-| Car | Easy | Moderate | Hard |
-|:-:|:-:|:-:|:-:|
-| Reported | 89.60 | 84.81 | 78.57 |
-| Reproduced | 85.41  | 83.16  | 77.10 |
-
-##### 3D detection performance: AP on KITTI validation set
-
-| Car | Easy | Moderate | Hard |
-|:-:|:-:|:-:|:-:|
-| Reported | 81.97 | 65.46 | 62.85 |
-| Reproduced | 53.43  | 48.78 | 48.06 |
-
-# TODO
-- [X] improve the performances
-- [ ] reproduce results for `Pedestrian` and `Cyclist`
-- [X] fix the deadlock problem in multi-thread processing in training
-- [X] fix the infinite loop problem in `test.py`
-- [X] replace averaged calibration matrices with correct ones
-
-
